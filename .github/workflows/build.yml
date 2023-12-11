@@ -17,10 +17,9 @@ jobs:
         password: ${{ secrets.PACKAGES_TOKEN}}
 
     - run: |
-        docker build -t ghcr.io/testefilmes/filmes-favoritos/filmes:latast -f Dockerfile .
-        docker tag ghcr.io/testefilmes/filmes-favoritos/filmes:latast ghcr.io-t ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}
+        docker build -t ghcr.io/testefilmes/filmes-favoritos/filmes:latest -f Dockerfile .
+        docker tag ghcr.io/testefilmes/filmes-favoritos/filmes:latest ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}
 
     - run: |
-        docker push ghcr.io/testefilmes/filmes-favoritos/filmes:latast
-        docker push ghcr.io-t ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}
-    
+        docker push ghcr.io/testefilmes/filmes-favoritos/filmes:latest
+        docker push ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}

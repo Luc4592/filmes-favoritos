@@ -10,6 +10,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Clear Docker credentials
+      run: |
+        docker logout ghcr.io
+        rm -rf ~/.docker/config.json
+
     - name: Docker Login
       uses: docker/login-action@v1
       with:

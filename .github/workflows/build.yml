@@ -22,6 +22,10 @@ jobs:
         username: ${{ secrets.PACKAGES_USER}}
         password: ${{ secrets.PACKAGES_TOKEN}}
 
+    - name: Debug Token
+      run: echo "${{ secrets.PACKAGES_TOKEN }}"
+
+
     - run: |
         docker build -t ghcr.io/testefilmes/filmes-favoritos/filmes:latest -f Dockerfile .
         docker tag ghcr.io/testefilmes/filmes-favoritos/filmes:latest ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}

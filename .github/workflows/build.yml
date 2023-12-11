@@ -10,7 +10,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - uses: action/docker-login@v1
+    - uses: .github/actions/docker-login
       with:
         login-server: ghcr.io
         username: ${{ secrets.PACKAGES_USER}}

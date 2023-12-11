@@ -1,1 +1,26 @@
+name: Filmes
 
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - uses: action/docker-login@v1
+      with:
+        login-server: ghcr.io
+        username: ${{ secrets.PACKAGES_USER}}
+        password: ${{ secrets.PACKAGES_TOKEN}}
+
+    - run: |
+        docker build -t ghcr.io/testefilmes/filmes-favoritos/filmes:latast -f Dockerfile .
+        docker tag ghcr.io/testefilmes/filmes-favoritos/filmes:latast ghcr.io-t ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}
+
+    - run: |
+        docker push ghcr.io/testefilmes/filmes-favoritos/filmes:latast
+        docker push ghcr.io-t ghcr.io/testefilmes/filmes-favoritos/filmes:${{ github.sha }}
+    
